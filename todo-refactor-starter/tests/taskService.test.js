@@ -30,6 +30,24 @@ describe("crearTarea", () => {
     expect(tarea).toEqual({ id: 10, titulo: "Diseñar pruebas", completada: false });
   });
 });
+describe("agregarTarea", () => {
+  it("agrega la tarea al final de la colección", () => {
+    const nueva = crearTarea(2, "B");
+
+    const resultado = agregarTarea([crearTarea(1, "A")], nueva);
+
+    expect(resultado).toHaveLength(2);
+    expect(resultado[1]).toEqual(nueva);
+  });
+
+  it("no muta la colección original", () => {
+    const original = [crearTarea(1, "A")];
+
+    agregarTarea(original, crearTarea(2, "B"));
+
+    expect(original).toHaveLength(1);
+  });
+});
 
 // MISIÓN 3: agrega al menos dos pruebas para agregarTarea().
 // MISIÓN 4: prueba id existente e inexistente para buscarTarea().
