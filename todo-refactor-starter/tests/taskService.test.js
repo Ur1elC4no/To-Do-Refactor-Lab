@@ -60,6 +60,28 @@ describe("buscarTarea", () => {
     expect(buscarTarea(tareas, 99)).toBeUndefined();
   });
 });
+describe("obtenerPendientes y obtenerTerminadas", () => {
+  const mixtas = [
+    { id: 1, titulo: "A", completada: true },
+    { id: 2, titulo: "B", completada: false }
+  ];
+
+  it("obtiene solo las pendientes", () => {
+    expect(obtenerPendientes(mixtas).map((t) => t.id)).toEqual([2]);
+  });
+
+  it("obtiene solo las terminadas", () => {
+    expect(obtenerTerminadas(mixtas).map((t) => t.id)).toEqual([1]);
+  });
+
+  it("devuelve vacío si no hay coincidencias", () => {
+    expect(obtenerTerminadas([crearTarea(1, "A")])).toEqual([]);
+  });
+
+  it("devuelve vacío con una colección vacía", () => {
+    expect(obtenerPendientes([])).toEqual([]);
+  });
+});
 
 // MISIÓN 3: agrega al menos dos pruebas para agregarTarea().
 // MISIÓN 4: prueba id existente e inexistente para buscarTarea().
