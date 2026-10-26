@@ -56,12 +56,29 @@ Cambia la estructura interna, no lo que el usuario ve y hace.
 
 ## Registro RED → GREEN → REFACTOR
 
-Documenta al menos una iteración:
+Iteración documentada: obtenerResumen (Misión 8)
 
-- **RED:** ¿qué prueba escribiste y por qué falló?
-- **GREEN:** ¿cuál fue el cambio mínimo que la hizo pasar?
-- **REFACTOR:** ¿qué mejoraste sin cambiar el comportamiento?
+- RED: escribí las pruebas de obtenerResumen (colección con tareas y colección
+  vacía). Fallaron porque la función solo lanzaba "Misión 8 pendiente".
+- GREEN: implementé la versión simple con dos filter().length directos.
+  Pasaron las 17 pruebas.
+- REFACTOR: reemplacé los filter repetidos por obtenerPendientes() y
+  obtenerTerminadas(), que ya existían. El comportamiento no cambió y las
+  17 pruebas siguieron en verde.
 
 ## Pair Programming
 
-Registra por misión quién fue **Driver** y quién **Navigator**. Intercambien roles con frecuencia y no hagan commit hasta que ambos puedan explicar el código y la prueba.
+## Pair Programming
+
+| Misión | Driver  | Navigator | Commit / evidencia |
+|--------|---------|-----------|--------------------|
+| 00     | Uriel   | Leonardo  | `de603bb`          |
+| 01     | Leonardo| Uriel     | `eae23e1`          |
+| 02     | Leonardo| Uriel     | `8256d96`          |
+| 03     | Leonardo| Uriel     | `709ed36`          |
+| 04     | Uriel   | Leonardo  | `b466281`          |
+| 05     | Uriel   | Leonardo  | `b01a2f0`          |
+| 06     | Uriel   | Leonardo  | `f9c0229`          |
+| 07     | Uriel   | Leonardo  | `38a9aca`          |
+| 08     | Leonardo| Uriel     | `aed31b3` (RED → GREEN), `5bea9bf` (REFACTOR) |
+| 09     | Uriel   | Leonardo  | `c3bbb97`          |
