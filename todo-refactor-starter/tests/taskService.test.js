@@ -82,6 +82,28 @@ describe("obtenerPendientes y obtenerTerminadas", () => {
     expect(obtenerPendientes([])).toEqual([]);
   });
 });
+describe("cambiarEstado", () => {
+  it("alterna el estado de la tarea indicada", () => {
+    const resultado = cambiarEstado([crearTarea(1, "A")], 1);
+
+    expect(resultado[0].completada).toBe(true);
+  });
+
+  it("no muta el original y deja intactas las otras tareas", () => {
+    const tareas = [crearTarea(1, "A"), crearTarea(2, "B")];
+
+    const resultado = cambiarEstado(tareas, 1);
+
+    expect(tareas[0].completada).toBe(false);
+    expect(resultado[1]).toEqual(tareas[1]);
+  });
+
+  it("con id inexistente no cambia nada", () => {
+    const tareas = [crearTarea(1, "A")];
+
+    expect(cambiarEstado(tareas, 99)).toEqual(tareas);
+  });
+});
 
 // MISIÓN 3: agrega al menos dos pruebas para agregarTarea().
 // MISIÓN 4: prueba id existente e inexistente para buscarTarea().
