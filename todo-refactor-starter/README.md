@@ -28,16 +28,31 @@ La primera prueba está preparada para fallar: es el punto de partida de la **Mi
 
 Responde aquí:
 
-1. ¿Dónde almacenarías ahora el estado `completada` de una tarea?
+1. ¿Dónde almacenarías ahora el estado completada de una tarea?
+Dentro de la propia tarea, como una propiedad de un objeto: { id, titulo, completada }. En legacy.js las tareas son strings y un string no puede guardar un estado. Con un objeto, el estado viaja junto con los datos de la tarea y empieza en false.
+
 2. ¿Qué ocurriría si mañana cada tarea necesita prioridad, fecha o responsable?
+Con strings habría que rehacer la estructura (arreglos paralelos o strings con formato) y reescribir todo el código que los usa. Con objetos solo se agrega una propiedad (prioridad, fecha, responsable). Las funciones que copian con spread ({ ...tarea }) siguen funcionando sin cambios.
+
 3. ¿Qué parte del código representa datos y qué parte representa interfaz?
+En legacy.js los datos son el arreglo tareas, que solo tiene strings sin estructura. La interfaz es mostrarTareas(), que usa document.querySelector e innerHTML. Están mezclados en el mismo archivo. Después del refactor, taskService.js tendrá los datos y las reglas, como funciones puras sin DOM. app.js solo leerá eventos, delegará al servicio y dibujará el resultado.
+
 4. ¿Qué comportamiento debemos conservar durante el refactor?
+El comportamiento visible para el usuario:
+
+Se pueden agregar tareas.
+Un título vacío o de solo espacios se rechaza con un mensaje.
+Se puede eliminar una tarea.
+Se muestra el total.
+Las 3 tareas iniciales siguen apareciendo.
+
+Cambia la estructura interna, no lo que el usuario ve y hace.
 
 ### Tres comportamientos observables que NO deben cambiar
 
-1. 
-2. 
-3. 
+1. Al agregar una tarea con título válido, aparece en la lista, el campo se limpia y se actualiza el total.
+2. Si el título está vacío o solo tiene espacios, no se agrega y se muestra “Escribe un título antes de agregar.”
+3. Al eliminar una tarea, desaparece solo esa tarea, las demás permanecen y el total se actualiza.
 
 ## Registro RED → GREEN → REFACTOR
 
