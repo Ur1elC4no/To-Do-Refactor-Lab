@@ -49,6 +49,18 @@ describe("agregarTarea", () => {
   });
 });
 
+describe("buscarTarea", () => {
+  const tareas = [crearTarea(1, "A"), crearTarea(2, "B")];
+
+  it("encuentra una tarea por id existente", () => {
+    expect(buscarTarea(tareas, 2)).toEqual({ id: 2, titulo: "B", completada: false });
+  });
+
+  it("devuelve undefined si el id no existe", () => {
+    expect(buscarTarea(tareas, 99)).toBeUndefined();
+  });
+});
+
 // MISIÓN 3: agrega al menos dos pruebas para agregarTarea().
 // MISIÓN 4: prueba id existente e inexistente para buscarTarea().
 // MISIÓN 5: prueba colección mixta, sin coincidencias y vacía.
