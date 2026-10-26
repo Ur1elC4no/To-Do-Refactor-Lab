@@ -46,7 +46,7 @@ export function eliminarTarea(tareas, id) {
 export function obtenerResumen(tareas) {
   return {
     total: tareas.length,
-    pendientes: tareas.filter((t) => !t.completada).length,
-    terminadas: tareas.filter((t) => t.completada).length
+    pendientes: obtenerPendientes(tareas).length,
+    terminadas: obtenerTerminadas(tareas).length
   };
 }
