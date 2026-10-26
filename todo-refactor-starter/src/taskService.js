@@ -39,12 +39,14 @@ export function cambiarEstado(tareas, id) {
 
 // MISIÓN 7
 export function eliminarTarea(tareas, id) {
-  // TODO: conservar todos excepto el id indicado.
-  throw new Error("Misión 7 pendiente: implementar eliminarTarea()");
+  return tareas.filter((tarea) => tarea.id !== id);
 }
 
 // MISIÓN 8
 export function obtenerResumen(tareas) {
-  // TODO: devolver { total, pendientes, terminadas }.
-  throw new Error("Misión 8 pendiente: implementar obtenerResumen()");
+  return {
+    total: tareas.length,
+    pendientes: tareas.filter((t) => !t.completada).length,
+    terminadas: tareas.filter((t) => t.completada).length
+  };
 }
